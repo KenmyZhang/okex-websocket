@@ -73,7 +73,7 @@ func (h *OkexWsConn) subscribespotTrade() bool {
 		"op":   "subscribe",
 		"args": args,
 	})
-	fmt.Println("message:", message)
+	fmt.Println("message:", string(message))
 	if !h.writeMessage(message) {
 		return false
 	}

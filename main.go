@@ -136,7 +136,7 @@ func wsPub() {
 		fmt.Println("订阅失败！", err)
 	}
 
-	time.Sleep(3 * time.Second)
+	time.Sleep(30 * time.Second)
 	/*
 		start = time.Now()
 		res, _, err = r.PubInstruemnts(ws.OP_UNSUBSCRIBE, args)
@@ -207,9 +207,7 @@ func wsJrpc() {
 
 func main() {
 	// 公共订阅
-	for {
-		wsPub()
-	}
+	wsPub()
 
 	// 私有订阅
 	//	wsPriv()

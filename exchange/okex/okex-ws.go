@@ -5,17 +5,18 @@ import (
 	"compress/flate"
 	"crypto/tls"
 	"fmt"
-	"github.com/gorilla/websocket"
 	"io/ioutil"
 	"net/url"
 	"okex-websocket/eqsModels"
 	"okex-websocket/eqsWebsocket"
 	"time"
+
+	"github.com/gorilla/websocket"
 )
 
 const DefaultScheme = "wss"
 const DefaultHost = "real.okex.com:8443"
-const DefaultPath = "/ws/v3"
+const DefaultPath = "/ws/v5/public"
 
 type OkexWsConn struct {
 	scheme  string

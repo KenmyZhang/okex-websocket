@@ -11,6 +11,7 @@ import (
 	. "okex-websocket/ws/wImpl"
 	"regexp"
 	"runtime/debug"
+	"strings"
 	"sync"
 	"time"
 
@@ -308,6 +309,10 @@ func (a *WsClient) work() {
 
 }
 
+type Candle15Min struct {
+	Data []string `json"data"`
+}
+
 /*
 	处理接受到的消息
 */
@@ -344,6 +349,14 @@ func (a *WsClient) receive() {
 		}
 
 		log.Println("[收到消息]", string(txtMsg))
+
+		if strings.Contains(string(txtMsg), "mark-price-candle15m") {
+			val := &Candle15Min{}
+			err := json.Unmarshal(txtMsg, val)
+			if err == nil {
+				fmt.Println(val.Data)
+			}
+		}
 
 		//发送结果到默认消息处理通道
 

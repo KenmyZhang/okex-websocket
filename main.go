@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"okex-websocket/ws"
+	"okex-websocket/ws/wImpl"
 	"time"
 )
 
@@ -118,14 +119,16 @@ func wsPub() {
 	}
 	defer r.Stop()
 	// 订阅产品频道
+
 	var args []map[string]string
 	arg := make(map[string]string)
-	arg["instType"] = ws.FUTURES
-	//arg["instType"] = OPTION
+	arg["instId"] = "BTC-USDT"
 	args = append(args, arg)
 
+	period := wImpl.PERIOD_15MIN
+
 	start := time.Now()
-	res, _, err := r.PubInstruemnts(ws.OP_SUBSCRIBE, args)
+	res, _, err := r.PubMarkPriceCandle(ws.OP_SUBSCRIBE, period, args)
 	if res {
 		usedTime := time.Since(start)
 		fmt.Println("订阅成功！", usedTime.String())
@@ -133,16 +136,17 @@ func wsPub() {
 		fmt.Println("订阅失败！", err)
 	}
 
-	time.Sleep(30 * time.Second)
-
-	start = time.Now()
-	res, _, err = r.PubInstruemnts(ws.OP_UNSUBSCRIBE, args)
-	if res {
-		usedTime := time.Since(start)
-		fmt.Println("取消订阅成功！", usedTime.String())
-	} else {
-		fmt.Println("取消订阅失败！", err)
-	}
+	time.Sleep(3 * time.Second)
+	/*
+		start = time.Now()
+		res, _, err = r.PubInstruemnts(ws.OP_UNSUBSCRIBE, args)
+		if res {
+			usedTime := time.Since(start)
+			fmt.Println("取消订阅成功！", usedTime.String())
+		} else {
+			fmt.Println("取消订阅失败！", err)
+		}
+	*/
 }
 
 // websocket交易
@@ -203,7 +207,9 @@ func wsJrpc() {
 
 func main() {
 	// 公共订阅
-	wsPub()
+	for {
+		wsPub()
+	}
 
 	// 私有订阅
 	//	wsPriv()

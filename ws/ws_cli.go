@@ -347,15 +347,15 @@ func (a *WsClient) receive() {
 				continue
 			}
 		}
-
-		log.Println("[收到消息]", string(txtMsg))
-
 		if strings.Contains(string(txtMsg), "mark-price-candle15m") {
 			val := &Candle15Min{}
 			err := json.Unmarshal(txtMsg, val)
 			if err == nil && len(val.Data) == 1 && len(val.Data[0]) == 5 {
 				fmt.Println(val.Data[0][4])
+				//log.Println("[收到消息]", string(txtMsg))
 			}
+		} else {
+			log.Println("[收到消息]", string(txtMsg))
 		}
 
 		//发送结果到默认消息处理通道

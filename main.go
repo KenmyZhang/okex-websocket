@@ -119,21 +119,38 @@ func wsPub() {
 	}
 	defer r.Stop()
 	// 订阅产品频道
+	{
+		var args []map[string]string
+		arg := make(map[string]string)
+		arg["instId"] = "BTC-USDT"
+		args = append(args, arg)
 
-	var args []map[string]string
-	arg := make(map[string]string)
-	arg["instId"] = "BTC-USDT"
-	args = append(args, arg)
+		period := wImpl.PERIOD_15MIN
 
-	period := wImpl.PERIOD_15MIN
+		start := time.Now()
+		res, _, err := r.PubMarkPriceCandle(ws.OP_SUBSCRIBE, period, args)
+		if res {
+			usedTime := time.Since(start)
+			fmt.Println("订阅成功！", usedTime.String())
+		} else {
+			fmt.Println("订阅失败！", err)
+		}
+	}
+	{
+		var args []map[string]string
+		arg := make(map[string]string)
+		arg["instId"] = "BTC-USDT"
 
-	start := time.Now()
-	res, _, err := r.PubMarkPriceCandle(ws.OP_SUBSCRIBE, period, args)
-	if res {
-		usedTime := time.Since(start)
-		fmt.Println("订阅成功！", usedTime.String())
-	} else {
-		fmt.Println("订阅失败！", err)
+		args = append(args, arg)
+
+		start := time.Now()
+		res, _, err := r.PubMarkPrice(ws.OP_SUBSCRIBE, args)
+		if res {
+			usedTime := time.Since(start)
+			fmt.Println("订阅成功！", usedTime.String())
+		} else {
+			fmt.Println("订阅失败！", err)
+		}
 	}
 
 	time.Sleep(30 * time.Second)

@@ -103,6 +103,38 @@ var EVENT_TABLE = [][]interface{}{
 	{EVENT_BOOK_INDEX_TICKERS, "指数行情", "index-tickers"},
 
 	/*
+			{
+			"arg": {
+				"channel": "tickers",
+				"instId": "BTC-USDT"
+			},
+			"data": [{
+				"instType": "SPOT",
+				"instId": "BTC-USDT",
+				"last": "61480",
+				"lastSz": "0.00027795",
+				"askPx": "61486.5",
+				"askSz": "0.56167815",
+				"bidPx": "61486.4",
+				"bidSz": "0.1625814",
+				"open24h": "62385.1",
+				"high24h": "62712.3",
+				"low24h": "60664.2",
+				"sodUtc0": "62230",
+				"sodUtc8": "61377.5",
+				"volCcy24h": "664979306.50158044",
+				"vol24h": "10783.65340569",
+				"ts": "1635617840638"
+			}]
+		}
+	*/
+
+	//{"channel":"trades","instId":"BTC-USDT"}
+	//{"channel":"tickers","instId":"BTC-USDT"},、
+	//{"channel":"books","instId":"BTC-USDT"}
+	//{"channel":"mark-price","instId":"BTC-USDT"}
+	//{"channel":"cup-tickers-3s","ccy":"USDT"}]}
+	/*
 		订阅私有频道
 	*/
 	{EVENT_BOOK_ACCOUNT, "账户", "account"},

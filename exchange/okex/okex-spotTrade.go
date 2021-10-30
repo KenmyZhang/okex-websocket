@@ -36,12 +36,12 @@ type OkexSpotTrade struct {
 func (h *OkexWsConn) StartspotTrade() {
 	// 创建ws
 	for {
-		fmt.Println("begin")
+		fmt.Println("okex create connection begin")
 		if h.createConnection() {
-			fmt.Println("success")
+			fmt.Println("okex create connection success")
 			break
 		}
-		fmt.Println("connect")
+		fmt.Println("okex create connectting")
 	}
 	defer h.wsConn.Close()
 

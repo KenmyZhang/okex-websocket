@@ -72,6 +72,7 @@ func (h *OkexWsConn) createConnection() bool {
 	dialer := &websocket.Dialer{
 		TLSClientConfig: &tls.Config{RootCAs: nil, InsecureSkipVerify: true}, // 禁用https证书验证
 	}
+	fmt.Println("u:", u.String())
 	conn, _, err := dialer.Dial(u.String(), nil)
 	if err != nil {
 		h.ErrChan <- err

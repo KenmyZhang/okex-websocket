@@ -64,9 +64,9 @@ func (h *OkexWsConn) StartspotTrade() {
 订阅频道
 */
 func (h *OkexWsConn) subscribespotTrade() bool {
-	symbol := h.symbol.ToUpperWithSep("-")
+	//	symbol := h.symbol.ToUpperWithSep("-")
 	args := []string{
-		fmt.Sprintf("spot/trade:%s", symbol),
+		`{"channel": "candle15m", "instId": "BTC-USDT"}`,
 	}
 	message, _ := json.Marshal(map[string]interface{}{
 		"op":   "subscribe",

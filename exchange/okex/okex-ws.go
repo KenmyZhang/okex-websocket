@@ -15,7 +15,7 @@ import (
 )
 
 const DefaultScheme = "wss"
-const DefaultHost = "real.okex.com:8443"
+const DefaultHost = "wspri.okex.com:8443"
 const DefaultPath = "/ws/v5/public"
 
 type OkexWsConn struct {

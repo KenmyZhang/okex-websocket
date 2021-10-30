@@ -353,8 +353,8 @@ func (a *WsClient) receive() {
 		if strings.Contains(string(txtMsg), "mark-price-candle15m") {
 			val := &Candle15Min{}
 			err := json.Unmarshal(txtMsg, val)
-			if err == nil {
-				fmt.Println(val.Data)
+			if err == nil && len(val.Data) == 1 && len(val.Data[0]) == 5 {
+				fmt.Println(val.Data[0][3])
 			}
 		}
 

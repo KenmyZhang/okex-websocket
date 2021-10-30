@@ -310,7 +310,7 @@ func (a *WsClient) work() {
 }
 
 type Candle15Min struct {
-	Data []string `json"data"`
+	Data [][]string `json"data"`
 }
 
 /*
